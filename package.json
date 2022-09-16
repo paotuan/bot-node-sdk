@@ -83,7 +83,9 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
+    "isomorphic-ws": "^5.0.0",
     "loglevel": "^1.8.0",
+    "mitt": "^3.0.0",
     "resty-client": "0.0.5",
     "ws": "^7.4.4"
   },

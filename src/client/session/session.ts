@@ -1,6 +1,6 @@
 import { GetWsParam, SessionEvents, SessionRecord, WsObjRequestOptions } from '@src/types/websocket-types';
 import { Ws } from '@src/client/websocket/websocket';
-import { EventEmitter } from 'ws';
+import { Mitt } from '@src/types';
 import resty from 'resty-client';
 import { addAuthorization } from '@src/utils/utils';
 import { BotLogger } from '@src/utils/logger';
@@ -9,10 +9,10 @@ export default class Session {
   config: GetWsParam;
   heartbeatInterval!: number;
   ws!: Ws;
-  event!: EventEmitter;
+  event!: Mitt;
   sessionRecord: SessionRecord | undefined;
 
-  constructor(config: GetWsParam, event: EventEmitter, sessionRecord?: SessionRecord) {
+  constructor(config: GetWsParam, event: Mitt, sessionRecord?: SessionRecord) {
     this.config = config;
     this.event = event;
     // 如果会话记录存在的话，继续透传

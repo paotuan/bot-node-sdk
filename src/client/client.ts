@@ -1,11 +1,11 @@
 import { GetWsParam, SessionEvents, SessionRecord, WebsocketCloseReason } from '@src/types/websocket-types';
 import Session from '@src/client/session/session';
-import { EventEmitter } from 'ws';
+import { Mitt } from '@src/types';
 import { BotLogger } from '@src/utils/logger';
 
 const MAX_RETRY = 10;
 
-export default class WebsocketClient extends EventEmitter {
+export default class WebsocketClient extends Mitt {
   session!: Session;
   retry = 0;
 

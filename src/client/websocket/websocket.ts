@@ -10,7 +10,8 @@ import {
   WsEventType,
   wsResData,
 } from '@src/types/websocket-types';
-import WebSocket, { EventEmitter } from 'ws';
+import WebSocket from 'isomorphic-ws';
+import { Mitt } from '@src/types';
 import { toObject } from '@src/utils/utils';
 import { Properties } from '@src/utils/constants';
 import { BotLogger } from '@src/utils/logger';
@@ -18,7 +19,7 @@ import { BotLogger } from '@src/utils/logger';
 // websocket连接
 export class Ws {
   ws!: WebSocket;
-  event!: EventEmitter;
+  event!: Mitt;
   config: GetWsParam;
   heartbeatInterval!: number;
   // 心跳参数，默认为心跳测试
@@ -35,7 +36,7 @@ export class Ws {
   };
   alive = false;
 
-  constructor(config: GetWsParam, event: EventEmitter, sessionRecord?: SessionRecord) {
+  constructor(config: GetWsParam, event: Mitt, sessionRecord?: SessionRecord) {
     this.config = config;
     this.isReconnect = false;
     this.event = event;
